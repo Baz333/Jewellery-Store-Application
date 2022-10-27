@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.StoreController">
+   <children>
+      <ListView fx:id="caseList" prefHeight="360.0" prefWidth="600.0" />
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="caseAddViewButton" mnemonicParsing="false" onAction="#OnCaseAddViewButton" prefHeight="32.0" prefWidth="70.0" text="Add Case" />
+            <Button fx:id="trayAddViewButton" mnemonicParsing="false" onAction="#OnTrayAddViewButton" prefHeight="32.0" prefWidth="70.0" text="Add Tray">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="itemAddViewButton" mnemonicParsing="false" onAction="#OnItemAddViewButton" prefHeight="32.0" prefWidth="70.0" text="Add Item">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="valueButton" mnemonicParsing="false" onAction="#OnValueButton" prefHeight="32.0" prefWidth="78.0" text="Value Stock">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#OnResetButton" prefHeight="32.0" prefWidth="45.0" text="Reset" />
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#OnSaveButton" prefHeight="32.0" prefWidth="41.0" text="Save">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="loadButton" mnemonicParsing="false" onAction="#OnLoadButton" prefHeight="31.0" prefWidth="42.0" text="Load" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
