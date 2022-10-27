@@ -65,17 +65,17 @@ public class ItemController {
     public void OnAddItemButton() throws IOException {
 
         //check all fields filled out correctly
-        if(getDescText() != null && getRetailPrice() != 0 && getCaseIDChoice() != null && getTrayIDChoice() != null && getTypeChoice() != null && getGenderChoice() != null && getFilePath() != null) {
+        if (getTrayFromUIDs() != null && getDescText() != null && getRetailPrice() != 0 && getCaseIDChoice() != null && getTrayIDChoice() != null && getTypeChoice() != null && getGenderChoice() != null && getFilePath() != null) {
 
             //add jewellery item to linked list
-            JewelleryItem ji = new JewelleryItem(null, null, getDescText(), getTypeChoice(), getGenderChoice(), getFilePath(), getRetailPrice());
+            JewelleryItem ji = new JewelleryItem(null, null, getTrayFromUIDs(), getDescText(), getTypeChoice(), getGenderChoice(), getFilePath(), getRetailPrice());
             ji.setNextItem(getTrayFromUIDs().getHead());
             getTrayFromUIDs().setHead(ji);
 
             //list to test if jewellery item was added
             JewelleryItem temp = getTrayFromUIDs().getHead();
-            while(temp != null) {
-                System.out.println(temp.getItemDescription());
+            while (temp != null) {
+                System.out.println(temp.getItemDescription() + " " + temp.getParent().getUid());
                 temp = temp.getNextItem();
             }
             System.out.println();
@@ -83,6 +83,7 @@ public class ItemController {
             //load store view scene
             FXMLLoader storeView = new FXMLLoader(ItemController.class.getResource("store-view.fxml"));
             addItemButton.getScene().setRoot(storeView.load());
+
 
         }
     }

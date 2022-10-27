@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.function.UnaryOperator;
-//HELLO
+
 public class CaseController {
 
 

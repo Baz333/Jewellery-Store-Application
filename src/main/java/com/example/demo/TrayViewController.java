@@ -36,6 +36,7 @@ public class TrayViewController {
                     temp2 = temp2.getNextItem();
                 }
                 ji = temp2;
+                ItemViewController.drillDown = true;
                 FXMLLoader itemScene = new FXMLLoader(CaseViewController.class.getResource("item-view.fxml"));
                 try {
                     itemList.getScene().setRoot(itemScene.load());

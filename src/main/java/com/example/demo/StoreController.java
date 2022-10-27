@@ -4,10 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.KeyCode;
+import javafx.scene.control.TextField;
 
 import java.io.*;
-import java.lang.reflect.Field;
 
 public class StoreController {
 
@@ -22,11 +21,12 @@ public class StoreController {
     @FXML
     private Button valueButton;
     @FXML
-    private Button saveButton;
+    private TextField searchText;
     @FXML
-    private Button loadButton;
+    private Button searchButton;
 
     public static DisplayCase dc;
+    public static String strToSearch;
 
 
 
@@ -76,6 +76,12 @@ public class StoreController {
     }
 
 
+
+    public void OnSearchButton() throws IOException {
+        strToSearch = searchText.getText();
+        FXMLLoader searchScene = new FXMLLoader(StoreController.class.getResource("search-view.fxml"));
+        searchButton.getScene().setRoot(searchScene.load());
+    }
 
     public void OnCaseAddViewButton() throws IOException {
         FXMLLoader caseAddScene = new FXMLLoader(StoreController.class.getResource("case-add-view.fxml"));

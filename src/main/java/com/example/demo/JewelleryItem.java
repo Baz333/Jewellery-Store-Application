@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class JewelleryItem implements Serializable {
     private MaterialComponent head;
     private JewelleryItem nextItem;
+    private DisplayTray parent;
     private String itemDescription;
     private String type;
     private String targetGender;
@@ -13,9 +14,10 @@ public class JewelleryItem implements Serializable {
 
 
 
-    public JewelleryItem(MaterialComponent head, JewelleryItem nextItem, String itemDescription, String type, String targetGender, String imageURL, int retailPrice) {
+    public JewelleryItem(MaterialComponent head, JewelleryItem nextItem, DisplayTray parent, String itemDescription, String type, String targetGender, String imageURL, int retailPrice) {
         setHead(head);
         setNextItem(nextItem);
+        setParent(parent);
         setItemDescription(itemDescription);
         setType(type);
         setTargetGender(targetGender);
@@ -31,6 +33,10 @@ public class JewelleryItem implements Serializable {
 
     public JewelleryItem getNextItem() {
         return nextItem;
+    }
+
+    public DisplayTray getParent() {
+        return parent;
     }
 
     public String getItemDescription() {
@@ -61,6 +67,10 @@ public class JewelleryItem implements Serializable {
 
     public void setNextItem(JewelleryItem nextItem) {
         this.nextItem = nextItem;
+    }
+
+    public void setParent(DisplayTray parent) {
+        this.parent = parent;
     }
 
     public void setItemDescription(String itemDescription) {

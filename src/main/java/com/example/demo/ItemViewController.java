@@ -35,12 +35,17 @@ public class ItemViewController {
     private Button backButton;
     @FXML
     private Button compButton;
+    public static boolean drillDown;
 
     public void initialize() {
-
-        DisplayCase dc = StoreController.dc;
-        DisplayTray dt = CaseViewController.dt;
-        JewelleryItem ji = TrayViewController.ji;
+        JewelleryItem ji;
+        if(drillDown) {
+            ji = TrayViewController.ji;
+        } else {
+            ji = SearchController.ji;
+        }
+        DisplayTray dt = ji.getParent();
+        DisplayCase dc = dt.getParent();
 
         String str = ji.getType();
         str = str.substring(0, 1).toUpperCase(Locale.ROOT) + str.substring(1);
@@ -70,8 +75,13 @@ public class ItemViewController {
     }
 
     public void OnBackButton() throws IOException {
-        FXMLLoader trayView = new FXMLLoader(ItemViewController.class.getResource("tray-view.fxml"));
-        backButton.getScene().setRoot(trayView.load());
+        if(drillDown) {
+            FXMLLoader trayView = new FXMLLoader(ItemViewController.class.getResource("tray-view.fxml"));
+            backButton.getScene().setRoot(trayView.load());
+        } else {
+            FXMLLoader searchView = new FXMLLoader(ItemViewController.class.getResource("search-view.fxml"));
+            backButton.getScene().setRoot(searchView.load());
+        }
     }
 
     public void OnCompButton() throws IOException {

@@ -79,10 +79,10 @@ public class TrayController {
     public void OnAddTrayButton() throws IOException {
 
         //check for unique id and all fields filled out correctly
-        if(uniqueUID() && getUidText().length() == 3 && getCaseIDChoice() != null && getColourCombo() != null && getLengthText() != 0 && getWidthText() != 0 && getHeightText() != 0) {
+        if(getCaseFromUID() != null && uniqueUID() && getUidText().length() == 3 && getCaseIDChoice() != null && getColourCombo() != null && getLengthText() != 0 && getWidthText() != 0 && getHeightText() != 0) {
 
             //add display tray to linked list
-            DisplayTray dt = new DisplayTray(null, null, getUidText(), getColourCombo(), getLengthText(), getWidthText(), getHeightText());
+            DisplayTray dt = new DisplayTray(null, null, getCaseFromUID(), getUidText(), getColourCombo(), getLengthText(), getWidthText(), getHeightText());
             dt.setNextTray(getCaseFromUID().getHead());
             getCaseFromUID().setHead(dt);
 
