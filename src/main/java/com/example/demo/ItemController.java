@@ -88,6 +88,85 @@ public class ItemController {
         }
     }
 
+    public void OnSmartAddButton() throws IOException {
+        if (getDescText() != null && getRetailPrice() != 0 && getTypeChoice() != null && getGenderChoice() != null && getFilePath() != null) {
+
+            DisplayCase temp = MainApplication.head;
+            DisplayTray bestTray = temp.getHead();
+            while(temp != null) {
+                DisplayTray temp2 = temp.getHead();
+                while(temp2 != null) {
+                    int i = 0;
+                    int i2 = 0;
+                    int j = 0;
+                    int j2 = 0;
+                    int k = 0;
+                    int k2 = 0;
+                    JewelleryItem temp3 = temp2.getHead();
+                    while(temp3 != null) {
+                        if(getGenderChoice().equals(temp3.getTargetGender())) {
+                            i++;
+                        }
+                        if(getTypeChoice().equals(temp3.getType())) {
+                            j++;
+                        }
+                        if(getRetailPrice() > temp3.getRetailPrice() - 50 && getRetailPrice() < temp3.getRetailPrice() + 50) {
+                            k++;
+                        }
+                        temp3 = temp3.getNextItem();
+                    }
+                    temp3 = bestTray.getHead();
+                    while(temp3 != null) {
+                        if(getGenderChoice().equals(temp3.getTargetGender())) {
+                            i2++;
+                        }
+                        if(getTypeChoice().equals(temp3.getType())) {
+                            j2++;
+                        }
+                        if(getRetailPrice() > temp3.getRetailPrice() - 50 && getRetailPrice() < temp3.getRetailPrice() + 50) {
+                            k2++;
+                        }
+                        temp3 = temp3.getNextItem();
+                    }
+                    if(i > i2) {
+                        bestTray = temp2;
+                    } else if(i == i2) {
+                        if(j > j2) {
+                            bestTray = temp2;
+                        } else if(j == j2) {
+                            if(k > k2) {
+                                bestTray = temp2;
+                            }
+                        }
+                    }
+                    temp2 = temp2.getNextTray();
+                }
+                temp = temp.getNextCase();
+            }
+
+            System.out.println("Tray " + bestTray.getUid() + " identified as most suitable tray. Adding...");
+
+            //add jewellery item to linked list
+            JewelleryItem ji = new JewelleryItem(null, null, bestTray, getDescText(), getTypeChoice(), getGenderChoice(), getFilePath(), getRetailPrice());
+            ji.setNextItem(bestTray.getHead());
+            bestTray.setHead(ji);
+
+            //list to test if jewellery item was added
+            JewelleryItem temp2 = bestTray.getHead();
+            while (temp2 != null) {
+                System.out.println(temp2.getItemDescription() + " " + temp2.getParent().getUid());
+                temp2 = temp2.getNextItem();
+            }
+            System.out.println();
+
+            //load store view scene
+            FXMLLoader storeView = new FXMLLoader(ItemController.class.getResource("store-view.fxml"));
+            addItemButton.getScene().setRoot(storeView.load());
+
+
+        }
+    }
+
     public void OnTrayIDChoice() {
         trayIDChoice.getItems().removeAll();
         DisplayCase temp = MainApplication.head;
