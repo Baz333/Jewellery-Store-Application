@@ -18,12 +18,17 @@ public class ValueController {
     private Button backButton;
 
     public void initialize() {
+
         int i= 0;
         DisplayCase temp = MainApplication.head;
+
         while(temp != null) {
+
             int j = 0;
             DisplayTray temp2 = temp.getHead();
+
             while(temp2 != null) {
+
                 JewelleryItem temp3 = temp2.getHead();
                 while(temp3 != null) {
                     i += temp3.getRetailPrice();
@@ -31,11 +36,33 @@ public class ValueController {
                     temp3 = temp3.getNextItem();
                 }
                 temp2 = temp2.getNextTray();
+
             }
+
             valueList.getItems().add(temp.getUid() + ": " + j + "€");
+            temp2 = temp.getHead();
+
+            while(temp2 != null) {
+
+                int k = 0;
+                JewelleryItem temp3 = temp2.getHead();
+
+                while(temp3 != null) {
+                    k+= temp3.getRetailPrice();
+                    temp3 = temp3.getNextItem();
+                }
+
+                valueList.getItems().add("\t" + temp2.getUid() + ": " + k + "€");
+                temp2 = temp2.getNextTray();
+
+            }
+
             temp = temp.getNextCase();
+
         }
+
         valueLabel.setText("Total Value: " + i + "€");
+
     }
 
     public void OnBackButton() throws IOException {

@@ -27,6 +27,18 @@ public class JewelleryItem implements Serializable {
 
 
 
+    public String materialsToString() {
+        String str = "";
+        MaterialComponent temp = head;
+        while(temp != null) {
+            str += temp.getName() + " (" + temp.getDesc() + "), " + temp.getWeight() + " carats, " + temp.getQuality() + "\n";
+            temp = temp.getNextComponent();
+        }
+        return str;
+    }
+
+
+
     public MaterialComponent getHead() {
         return head;
     }

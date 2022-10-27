@@ -227,6 +227,9 @@ public class ItemController {
     }
 
     private int getRetailPrice() {
+        if(priceText.getText().equals("")) {
+            return 0;
+        }
         return Integer.parseInt(priceText.getText());
     }
 

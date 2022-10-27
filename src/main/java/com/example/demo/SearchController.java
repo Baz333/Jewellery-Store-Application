@@ -26,7 +26,7 @@ public class SearchController {
                 int i = 0;
                 while(temp3 != null) {
                     String str = "[" + temp.getUid() + ", " + temp2.getUid() + ": " + i + "] " + temp3.getType() + " (" + temp3.getTargetGender() + "), " + temp3.getItemDescription() + " " + temp3.getRetailPrice() + "€";
-                    if(str.contains(strToSearch)) {
+                    if(str.contains(strToSearch) || temp3.materialsToString().contains(strToSearch)) {
                         searchList.getItems().add(str);
                     }
                     i++;
