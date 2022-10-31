@@ -11,6 +11,7 @@ public class CaseController {
 
 
 
+    //variables from scene builder
     @FXML
     private TextField uidText;
     @FXML
@@ -26,6 +27,7 @@ public class CaseController {
 
     public void initialize() {
 
+        //fill choicebox for choosing type of display case
         typeChoice.getItems().addAll("freestanding", "wall-mounted");
 
         //ref: https://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength
@@ -35,7 +37,7 @@ public class CaseController {
             if (c.isContentChange()) {
                 int newLength = c.getControlNewText().length();
                 if (newLength > 3) {
-                    String head = c.getControlNewText().substring(newLength - 4, newLength - 1);
+                    String head = c.getControlNewText().substring(0, 3);
                     c.setText(head);
                     int oldLength = c.getControlText().length();
                     c.setRange(0, oldLength);
@@ -87,6 +89,7 @@ public class CaseController {
     }
 
     public void OnBackButton() throws IOException {
+        //loads store scene
         FXMLLoader storeScene = new FXMLLoader(CaseController.class.getResource("store-view.fxml"));
         backButton.getScene().setRoot(storeScene.load());
     }
@@ -94,6 +97,8 @@ public class CaseController {
 
 
     private boolean uniqueUid() {
+        //checks if any other display case has the same uid as was inputted
+        //returns true is no other display case has the same uid, false if one does
         DisplayCase temp = MainApplication.head;
         while(temp != null) {
             if(getUidText().equals(temp.getUid())) {
@@ -120,28 +125,3 @@ public class CaseController {
     }
 
 }
-
-
-
-//trying to figure out scene switching
-
-//(variables)
-//private VBox placeholder = new VBox();
-//private Label test = new Label("Success!");
-//private Stage stage = new Stage();
-//private Stage stage = (Stage) addCaseButton.getScene().getWindow();
-
-//(init method)
-//placeholder.getChildren().add(test);
-
-//(case add method)
-        /*Parent newRoot = FXMLLoader.load(getClass().getResource("store-view.fxml"));
-        stage.getScene().setRoot(newRoot);*/
-
-        /*FXMLLoader fxmlLoader = new FXMLLoader(JewelleryController.class.getResource("store-view.fxml"));
-        Scene scene2 = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Jewellery Store");
-        stage.setScene(scene2);
-        stage.show();*/
-
-        //addCaseButton.getScene().setRoot(placeholder);

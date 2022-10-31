@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class CaseViewController {
 
+    //variables from scene builder
     @FXML
     private ListView<String> trayList;
     @FXML
@@ -17,20 +18,28 @@ public class CaseViewController {
     @FXML
     private Label caseNumberLabel;
 
+    //stores a display tray to be loaded in another scene
     public static DisplayTray dt;
 
 
 
     public void initialize() {
 
+        //imports display case to load in
         DisplayCase dc = StoreController.dc;
+
+        //sets up label to show case uid
         caseNumberLabel.setText("Case " + dc.getUid());
+
+        //list all trays in case
         DisplayTray temp = dc.getHead();
         while (temp != null) {
             trayList.getItems().add(temp.getUid() + ": " + temp.getInlayColour() + ", (" + temp.getDimensions()[0] + ", " + temp.getDimensions()[1] + ", " + temp.getDimensions()[2] + ")");
             temp = temp.getNextTray();
         }
 
+        //drill down function
+        //gets uid of selected tray, finds tray it belongs to, assigns it to static variable to be used in TrayViewController and loads tray scene
         trayList.setOnMouseClicked(click -> {
             if(click.getClickCount() == 2) {
                 String uidSelected = trayList.getSelectionModel().getSelectedItem();
@@ -56,6 +65,7 @@ public class CaseViewController {
 
 
     public void OnBackButton() throws IOException {
+        //loads store scene
         FXMLLoader storeView = new FXMLLoader(CaseViewController.class.getResource("store-view.fxml"));
         backButton.getScene().setRoot(storeView.load());
     }

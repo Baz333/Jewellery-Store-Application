@@ -11,6 +11,7 @@ public class TrayController {
 
 
 
+    //variables from scene builder
     @FXML
     private TextField uidText;
     @FXML
@@ -32,13 +33,17 @@ public class TrayController {
 
     public void initialize() {
 
+        //fills case uid choicebox
         DisplayCase temp = MainApplication.head;
         while(temp != null) {
             caseIDChoice.getItems().add(temp.getUid());
             temp = temp.getNextCase();
         }
+
+        //fills colour combobox
         colourCombo.getItems().addAll("black", "white", "red", "yellow", "green", "blue", "purple", "orange");
 
+        //limits tray id textfield to 3 characters and restricts it to capital letter, number, number
         UnaryOperator<TextFormatter.Change> modifyChange = c -> {
             if (c.isContentChange()) {
                 int oldLength = c.getControlText().length();
@@ -103,6 +108,7 @@ public class TrayController {
     }
 
     public void OnBackButton() throws IOException {
+        //load store scene
         FXMLLoader storeScene = new FXMLLoader(TrayController.class.getResource("store-view.fxml"));
         backButton.getScene().setRoot(storeScene.load());
     }
@@ -110,6 +116,8 @@ public class TrayController {
 
 
     private boolean uniqueUID() {
+        //checks if any other display tray has the same uid as was inputted
+        //returns true is no other display tray has the same uid, false if one does
         DisplayCase temp = MainApplication.head;
         while(temp != null) {
             DisplayTray temp2 = temp.getHead();
@@ -126,6 +134,7 @@ public class TrayController {
 
 
 
+    //getters
     public String getUidText() {
         return uidText.getText();
     }
@@ -135,6 +144,7 @@ public class TrayController {
     }
 
     public DisplayCase getCaseFromUID() {
+        //returns case given its id
         DisplayCase temp = MainApplication.head;
         while(temp != null) {
             if(temp.getUid().equals(getCaseIDChoice())) {

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class ValueController {
 
+    //variables from scene builder
     @FXML
     private ListView<String> valueList;
     @FXML
@@ -19,15 +20,17 @@ public class ValueController {
 
     public void initialize() {
 
-        int i= 0;
+        //i represents total value of stock
+        int i = 0;
         DisplayCase temp = MainApplication.head;
 
-        while(temp != null) {
+        while(temp != null) { //shows value of stock
 
+            //j represents value of a display case
             int j = 0;
             DisplayTray temp2 = temp.getHead();
 
-            while(temp2 != null) {
+            while(temp2 != null) { //shows value of each case
 
                 JewelleryItem temp3 = temp2.getHead();
                 while(temp3 != null) {
@@ -42,8 +45,9 @@ public class ValueController {
             valueList.getItems().add(temp.getUid() + ": " + j + "€");
             temp2 = temp.getHead();
 
-            while(temp2 != null) {
+            while(temp2 != null) { //shows value of each tray
 
+                //k represents value of a display tray
                 int k = 0;
                 JewelleryItem temp3 = temp2.getHead();
 
@@ -66,6 +70,7 @@ public class ValueController {
     }
 
     public void OnBackButton() throws IOException {
+        //loads store scene
         FXMLLoader storeView = new FXMLLoader(ValueController.class.getResource("store-view.fxml"));
         backButton.getScene().setRoot(storeView.load());
     }

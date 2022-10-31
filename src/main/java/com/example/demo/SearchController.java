@@ -9,15 +9,21 @@ import java.io.IOException;
 
 public class SearchController {
 
+    //variables from scene builder
     @FXML
     private ListView<String> searchList;
     @FXML
     private Button backButton;
+
+    //stores a jewellery item to be loaded in another scene
     public static JewelleryItem ji;
 
     public void initialize() {
 
+        //imports string to search items for
         String strToSearch = StoreController.strToSearch;
+
+        //searches items and their mat/coms for string and lists each matched item
         DisplayCase temp = MainApplication.head;
         while(temp != null) {
             DisplayTray temp2 = temp.getHead();
@@ -37,6 +43,8 @@ public class SearchController {
             temp = temp.getNextCase();
         }
 
+        //drill down function
+        //gets selected item, finds item it belongs to, assigns it to static variable to be used in ItemViewController and loads item scene
         searchList.setOnMouseClicked(click -> {
             if (click.getClickCount() == 2) {
                 if (searchList.getSelectionModel().getSelectedItem() != null) {
@@ -73,6 +81,7 @@ public class SearchController {
     }
 
     public void OnBackButton() throws IOException {
+        //loads store scene
         FXMLLoader storeScene = new FXMLLoader(SearchController.class.getResource("store-view.fxml"));
         backButton.getScene().setRoot(storeScene.load());
     }

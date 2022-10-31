@@ -11,10 +11,12 @@ public class MainApplication extends Application {
 
 
 
+    //stores the head of the display case linked list
     public static DisplayCase head = null;
 
 
 
+    //loads store view
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("store-view.fxml"));
@@ -29,4 +31,7 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
+
 }

@@ -3,12 +3,17 @@ package com.example.demo;
 import java.io.Serializable;
 
 public class DisplayCase implements Serializable {
+
+    //fields
     private DisplayTray head;
     private DisplayCase nextCase;
     private String uid;
     private String type;
     private boolean lit;
 
+
+
+    //constructor
     public DisplayCase(DisplayTray head, DisplayCase nextCase, String uid, String type, boolean lit) {
         setHead(head);
         setNextCase(nextCase);
@@ -18,7 +23,7 @@ public class DisplayCase implements Serializable {
     }
 
 
-
+    //returns number of display trays in case
     public int numberOfDisplayTrays() {
         DisplayTray temp = head;
         int i = 0;
@@ -31,6 +36,7 @@ public class DisplayCase implements Serializable {
 
 
 
+    //getters
     public DisplayTray getHead() {
         return head;
     }
@@ -53,6 +59,7 @@ public class DisplayCase implements Serializable {
 
 
 
+    //setters
     public void setHead(DisplayTray head) {
         this.head = head;
     }

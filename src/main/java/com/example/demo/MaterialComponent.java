@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class MaterialComponent implements Serializable {
 
+    //fields
     private MaterialComponent nextComponent;
     private String name;
     private String desc;
@@ -12,6 +13,7 @@ public class MaterialComponent implements Serializable {
 
 
 
+    //constructor
     public MaterialComponent(MaterialComponent nextComponent, String name, String desc, int weight, String quality) {
         setNextComponent(nextComponent);
         setName(name);
@@ -22,6 +24,7 @@ public class MaterialComponent implements Serializable {
 
 
 
+    //getters
     public MaterialComponent getNextComponent() {
         return nextComponent;
     }
@@ -44,6 +47,7 @@ public class MaterialComponent implements Serializable {
 
 
 
+    //setters
     public void setNextComponent(MaterialComponent nextComponent) {
         this.nextComponent = nextComponent;
     }
@@ -63,4 +67,5 @@ public class MaterialComponent implements Serializable {
     public void setQuality(String quality) {
         this.quality = quality;
     }
+
 }

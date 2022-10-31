@@ -15,6 +15,7 @@ import java.util.Locale;
 
 public class ItemViewController {
 
+    //variables from scene builder
     @FXML
     private Label typeLabel;
     @FXML
@@ -35,18 +36,26 @@ public class ItemViewController {
     private Button backButton;
     @FXML
     private Button compButton;
+
+    //tells controller if scene was accessed from TrayViewController (true) or SearchController (false)
+    //remotely set as true each time scene accessed from TrayViewController, false for SearchController
     public static boolean drillDown;
 
     public void initialize() {
+
+        //imports jewellery item that was selected to get to this scene
         JewelleryItem ji;
         if(drillDown) {
             ji = TrayViewController.ji;
         } else {
             ji = SearchController.ji;
         }
+
+        //gets tray + case belonging to jewellery item
         DisplayTray dt = ji.getParent();
         DisplayCase dc = dt.getParent();
 
+        //fills in labels with item info
         String str = ji.getType();
         str = str.substring(0, 1).toUpperCase(Locale.ROOT) + str.substring(1);
         typeLabel.setText(str);
@@ -58,6 +67,7 @@ public class ItemViewController {
         genderLabel.setText("Target Gender: " + str);
         priceLabel.setText("Retail Price: " + ji.getRetailPrice() + "€");
 
+        //displays image
         try {
             InputStream stream = new FileInputStream(ji.getImageURL());
             Image image = new Image(stream);
@@ -66,6 +76,7 @@ public class ItemViewController {
             e.printStackTrace();
         }
 
+        //lists mat/coms of item
         MaterialComponent temp = ji.getHead();
         while(temp != null) {
             compList.getItems().add(temp.getName() + " (" + temp.getDesc() + "), " + temp.getWeight() + " carats, " + temp.getQuality());
@@ -75,6 +86,7 @@ public class ItemViewController {
     }
 
     public void OnBackButton() throws IOException {
+        //loads either tray scene or search scene
         if(drillDown) {
             FXMLLoader trayView = new FXMLLoader(ItemViewController.class.getResource("tray-view.fxml"));
             backButton.getScene().setRoot(trayView.load());
@@ -85,6 +97,7 @@ public class ItemViewController {
     }
 
     public void OnCompButton() throws IOException {
+        //loads add mat/com scene
         FXMLLoader compAddView = new FXMLLoader(ItemViewController.class.getResource("comp-add-view.fxml"));
         compButton.getScene().setRoot(compAddView.load());
     }

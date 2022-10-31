@@ -3,6 +3,10 @@ package com.example.demo;
 import java.io.Serializable;
 
 public class JewelleryItem implements Serializable {
+
+
+
+    //fields
     private MaterialComponent head;
     private JewelleryItem nextItem;
     private DisplayTray parent;
@@ -14,6 +18,7 @@ public class JewelleryItem implements Serializable {
 
 
 
+    //constructor
     public JewelleryItem(MaterialComponent head, JewelleryItem nextItem, DisplayTray parent, String itemDescription, String type, String targetGender, String imageURL, int retailPrice) {
         setHead(head);
         setNextItem(nextItem);
@@ -27,6 +32,7 @@ public class JewelleryItem implements Serializable {
 
 
 
+    //lists all materials associated with the jewellery item
     public String materialsToString() {
         String str = "";
         MaterialComponent temp = head;
@@ -39,6 +45,7 @@ public class JewelleryItem implements Serializable {
 
 
 
+    //getters
     public MaterialComponent getHead() {
         return head;
     }
@@ -73,6 +80,7 @@ public class JewelleryItem implements Serializable {
 
 
 
+    //setters
     public void setHead(MaterialComponent head) {
         this.head = head;
     }

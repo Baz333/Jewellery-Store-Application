@@ -3,6 +3,8 @@ package com.example.demo;
 import java.io.Serializable;
 
 public class DisplayTray implements Serializable {
+
+    //fields
     private JewelleryItem head;
     private DisplayTray nextTray;
     private DisplayCase parent;
@@ -12,6 +14,7 @@ public class DisplayTray implements Serializable {
 
 
 
+    //constructor
     public DisplayTray(JewelleryItem head, DisplayTray nextTray, DisplayCase parent, String uid, String inlayColour, int length, int width, int height) {
         setHead(head);
         setNextTray(nextTray);
@@ -22,6 +25,8 @@ public class DisplayTray implements Serializable {
     }
 
 
+
+    //getters
     public JewelleryItem getHead() {
         return head;
     }
@@ -48,6 +53,7 @@ public class DisplayTray implements Serializable {
 
 
 
+    //setters
     public void setHead(JewelleryItem head) {
         this.head = head;
     }
@@ -75,4 +81,5 @@ public class DisplayTray implements Serializable {
         this.dimensions[1] = width;
         this.dimensions[2] = height;
     }
+
 }

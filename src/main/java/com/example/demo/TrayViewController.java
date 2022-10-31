@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class TrayViewController {
 
+    //variables from scene builder
     @FXML
     private ListView<String> itemList;
     @FXML
@@ -18,16 +19,24 @@ public class TrayViewController {
     @FXML
     private Label trayNumberLabel;
 
+    //stores a jewellery item to be loaded in another scene
     public static JewelleryItem ji;
 
 
 
     public void initialize() throws IOException {
 
+        //imports display tray to load in
         DisplayTray dt = CaseViewController.dt;
+
+        //sets up label to show tray uid
         trayNumberLabel.setText("Tray " + dt.getUid());
+
+        //lists all items in tray
         repopulate();
 
+        //drill down function
+        //gets selected item, finds item it belongs to, assigns it to static variable to be used in ItemViewController and loads item scene
         itemList.setOnMouseClicked(click -> {
             if(click.getClickCount() == 2) {
                 int selectedIndex = itemList.getSelectionModel().getSelectedIndex();
@@ -46,6 +55,7 @@ public class TrayViewController {
             }
         });
 
+        //delete item on delete key pressed
         itemList.setOnKeyPressed(keyEvent -> {
             KeyCode code = keyEvent.getCode();
             if(code==KeyCode.DELETE) {
@@ -68,6 +78,7 @@ public class TrayViewController {
 
     }
 
+    //lists all items in tray
     private void repopulate() {
         itemList.getItems().clear();
         JewelleryItem temp = CaseViewController.dt.getHead();
@@ -80,6 +91,7 @@ public class TrayViewController {
 
 
     public void OnBackButton() throws IOException {
+        //loads case scene
         FXMLLoader caseView = new FXMLLoader(CaseViewController.class.getResource("case-view.fxml"));
         backButton.getScene().setRoot(caseView.load());
     }
