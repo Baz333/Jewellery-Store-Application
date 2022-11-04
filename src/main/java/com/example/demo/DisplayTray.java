@@ -69,17 +69,27 @@ public class DisplayTray implements Serializable {
     public void setUid(String uid) {
         if(uid.length() == 3) {
             this.uid = uid;
+        } else if(uid.length() > 3) {
+            this.uid = uid.substring(0, 3);
         }
     }
 
     public void setInlayColour(String inlayColour) {
-        this.inlayColour = inlayColour;
+        if(inlayColour.equals("black") || inlayColour.equals("white") || inlayColour.equals("red") || inlayColour.equals("yellow") || inlayColour.equals("green") || inlayColour.equals("blue") || inlayColour.equals("purple") || inlayColour.equals("orange") || inlayColour.equals("other")) {
+            this.inlayColour = inlayColour;
+        }
     }
 
     public void setDimensions(int length, int width, int height) {
-        this.dimensions[0] = length;
-        this.dimensions[1] = width;
-        this.dimensions[2] = height;
+        if(length > 0) {
+            this.dimensions[0] = length;
+        }
+        if(width > 0) {
+            this.dimensions[1] = width;
+        }
+        if(height > 0) {
+            this.dimensions[2] = height;
+        }
     }
 
 }

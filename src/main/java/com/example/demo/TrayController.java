@@ -41,7 +41,7 @@ public class TrayController {
         }
 
         //fills colour combobox
-        colourCombo.getItems().addAll("black", "white", "red", "yellow", "green", "blue", "purple", "orange");
+        colourCombo.getItems().addAll("black", "white", "red", "yellow", "green", "blue", "purple", "orange", "other");
 
         //limits tray id textfield to 3 characters and restricts it to capital letter, number, number
         UnaryOperator<TextFormatter.Change> modifyChange = c -> {

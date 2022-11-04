@@ -113,7 +113,9 @@ public class JewelleryItem implements Serializable {
     }
 
     public void setRetailPrice(int retailPrice) {
-        this.retailPrice = retailPrice;
+        if(retailPrice > 0) {
+            this.retailPrice = retailPrice;
+        }
     }
 
 

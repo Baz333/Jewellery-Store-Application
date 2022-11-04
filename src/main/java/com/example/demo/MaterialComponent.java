@@ -53,7 +53,9 @@ public class MaterialComponent implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(name.equals("gold") || name.equals("platinum") || name.equals("diamond") || name.equals("emerald") || name.equals("silver") || name.equals("other")) {
+            this.name = name;
+        }
     }
 
     public void setDesc(String desc) {
@@ -61,10 +63,13 @@ public class MaterialComponent implements Serializable {
     }
 
     public void setWeight(int weight) {
-        this.weight = weight;
+        if(weight > 0) {
+            this.weight = weight;
+        }
     }
 
     public void setQuality(String quality) {
+        if(quality.equals("excellent") || quality.equals("very good") ||quality.equals("good") || quality.equals("fair") || quality.equals("poor"))
         this.quality = quality;
     }
 
