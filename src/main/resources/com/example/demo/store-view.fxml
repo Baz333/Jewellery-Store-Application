@@ -17,6 +17,11 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
+            <Button fx:id="listStockButton" mnemonicParsing="false" onAction="#OnListStockButton" text="List All Stock">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <ListView fx:id="caseList" prefHeight="314.0" prefWidth="600.0" />

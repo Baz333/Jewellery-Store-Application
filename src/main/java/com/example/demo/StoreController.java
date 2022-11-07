@@ -27,6 +27,8 @@ public class StoreController {
     private TextField searchText;
     @FXML
     private Button searchButton;
+    @FXML
+    private Button listStockButton;
 
     //stores a display case to be loaded in another scene
     public static DisplayCase dc;
@@ -93,6 +95,12 @@ public class StoreController {
         //loads search scene
         FXMLLoader searchScene = new FXMLLoader(StoreController.class.getResource("search-view.fxml"));
         searchButton.getScene().setRoot(searchScene.load());
+    }
+
+    public void OnListStockButton() throws IOException {
+        strToSearch = "";
+        FXMLLoader listScene = new FXMLLoader(StoreController.class.getResource("search-view.fxml"));
+        listStockButton.getScene().setRoot(listScene.load());
     }
 
     public void OnCaseAddViewButton() throws IOException {
